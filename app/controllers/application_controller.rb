@@ -18,15 +18,15 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path, alert: "Anda tidak memiliki akses.") }
-      format.json { render json: { error: "Forbidden" }, status: :forbidden }
+      format.html { redirect_back(fallback_location: root_path, alert: 'Anda tidak memiliki akses.') }
+      format.json { render json: { error: 'Forbidden' }, status: :forbidden }
     end
   end
 
   def record_not_found
     respond_to do |format|
-      format.html { redirect_to root_path, alert: "Data tidak ditemukan." }
-      format.json { render json: { error: "Not Found" }, status: :not_found }
+      format.html { redirect_to root_path, alert: 'Data tidak ditemukan.' }
+      format.json { render json: { error: 'Not Found' }, status: :not_found }
     end
   end
 end
