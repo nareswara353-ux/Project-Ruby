@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.3.0'
+ruby '3.4.10'
 
 gem 'rails', '~> 7.2.0'
 gem 'pg', '~> 1.5'
@@ -25,6 +25,17 @@ gem 'rack-cors', '~> 2.0'
 gem 'jbuilder', '~> 2.11'
 gem 'sassc-rails', '~> 2.1'
 gem 'importmap-rails', '~> 2.0'
+
+gem 'logger'
+gem 'ostruct'
+gem 'benchmark'
+gem 'mutex_m'
+gem 'base64'
+gem 'bigdecimal'
+gem 'drb'
+gem 'abbrev'
+gem 'observer'
+gem 'csv'
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.1'
