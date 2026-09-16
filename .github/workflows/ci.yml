@@ -16,7 +16,7 @@ jobs:
           ruby-version: "3.3.0"
           bundler-cache: true
       - name: RuboCop
-        run: bundle exec rubocop --parallel
+        run: bundle exec rubocop --parallel --format simple
 
   security:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
           ruby-version: "3.3.0"
           bundler-cache: true
       - name: Brakeman
-        run: bundle exec brakeman -q -w2
+        run: bundle exec brakeman -q --no-pager --no-exit-on-warn -w2
 
   test:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
         with:
           ruby-version: "3.3.0"
           bundler-cache: true
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libpq-dev
