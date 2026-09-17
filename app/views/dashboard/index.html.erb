@@ -1,0 +1,42 @@
+<% content_for :title, "Dashboard" %>
+
+<h1>Dashboard</h1>
+
+<section class="enrollments">
+  <h2>Course yang Diikuti</h2>
+  <% if @enrollments.any? %>
+    <ul>
+      <% @enrollments.each do |enrollment| %>
+        <li>
+          <%= link_to enrollment.course.title, course_path(enrollment.course) %>
+          <span class="progress">Progress: <%= enrollment.progress %>%</span>
+          <span class="status"><%= enrollment.status.humanize %></span>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Belum ada course. <%= link_to "Jelajahi courses", courses_path %>.</p>
+  <% end %>
+</section>
+
+<section class="certificates">
+  <h2>Sertifikat</h2>
+  <% if @certificates.any? %>
+    <ul>
+      <% @certificates.each do |cert| %>
+        <li><%= link_to "Sertifikat #{cert.course.title}", certificate_path(cert) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Belum ada sertifikat.</p>
+  <% end %>
+</section>
+
+<section class="notifications">
+  <h2>Notifikasi Terbaru</h2>
+  <ul>
+    <% @recent_notifications.each do |notif| %>
+      <li class="<%= 'unread' unless notif.read %>"><%= notif.message %></li>
+    <% end %>
+  </ul>
+</section>
