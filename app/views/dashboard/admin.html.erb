@@ -1,0 +1,48 @@
+<% content_for :title, "Admin Dashboard" %>
+
+<h1>Admin Dashboard</h1>
+
+<section class="stats">
+  <div class="stat">
+    <strong><%= @users_count %></strong>
+    <span>Total Users</span>
+  </div>
+  <div class="stat">
+    <strong><%= @courses_count %></strong>
+    <span>Courses</span>
+  </div>
+  <div class="stat">
+    <strong><%= @enrollments_count %></strong>
+    <span>Enrollments</span>
+  </div>
+  <div class="stat">
+    <strong><%= number_to_currency(@revenue_total, unit: "Rp", precision: 0) %></strong>
+    <span>Total Revenue</span>
+  </div>
+</section>
+
+<section class="recent-payments">
+  <h2>Pembayaran Terbaru</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Course</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Tanggal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recent_payments.each do |payment| %>
+        <tr>
+          <td><%= payment.user.name %></td>
+          <td><%= payment.course.title %></td>
+          <td><%= number_to_currency(payment.amount, unit: "Rp", precision: 0) %></td>
+          <td><%= payment.status.humanize %></td>
+          <td><%= payment.created_at.strftime("%d %b %Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
