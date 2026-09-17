@@ -1,0 +1,18 @@
+<% content_for :title, "Sertifikat Saya" %>
+
+<h1>Sertifikat Saya</h1>
+
+<% if @certificates.any? %>
+  <ul class="certificates-list">
+    <% @certificates.each do |cert| %>
+      <li>
+        <strong><%= cert.course.title %></strong>
+        <span>Kode: <%= cert.code %></span>
+        <span>Diterbitkan: <%= cert.issued_at.strftime("%d %b %Y") %></span>
+        <%= link_to "Lihat", certificate_path(cert) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Belum ada sertifikat. Selesaikan course untuk mendapatkan sertifikat.</p>
+<% end %>
