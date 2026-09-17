@@ -1,0 +1,37 @@
+<% content_for :title, @user.name %>
+
+<article class="user-profile">
+  <header>
+    <h1><%= @user.name %></h1>
+    <span class="role"><%= @user.role.humanize %></span>
+    <% if @user.bio.present? %>
+      <p class="bio"><%= @user.bio %></p>
+    <% end %>
+  </header>
+
+  <% if @user.instructor? && @courses.present? %>
+    <section class="courses">
+      <h2>Course oleh <%= @user.name %></h2>
+      <div class="course-grid">
+        <% @courses.each do |course| %>
+          <%= render "courses/course_card", course: course %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <% if @user.student? && @enrollments.present? %>
+    <section class="enrollments">
+      <h2>Course yang Diikuti</h2>
+      <ul>
+        <% @enrollments.each do |enrollment| %>
+          <li><%= link_to enrollment.course.title, course_path(enrollment.course) %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @user == current_user %>
+    <%= link_to "Edit Profil", edit_user_registration_path, class: "btn" %>
+  <% end %>
+</article>
