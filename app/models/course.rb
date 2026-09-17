@@ -4,10 +4,11 @@ class Course < ApplicationRecord
 
   belongs_to :instructor, class_name: "User"
   has_many :modules, class_name: "CourseModule", dependent: :destroy
+  has_many :lessons, through: :modules
   has_many :enrollments, dependent: :destroy
   has_many :students, through: :enrollments, source: :user
   has_many :discussion_topics, dependent: :destroy
-  has_many :quiz_assignments, dependent: :destroy
+  has_many :quizzes, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 200 }
   validates :description, length: { maximum: 2000 }

@@ -3,7 +3,7 @@ class CourseModule < ApplicationRecord
 
   belongs_to :course
   has_many :lessons, dependent: :destroy
-  has_many :quiz_assignments, through: :course
+  has_many :quizzes, through: :course
 
   validates :title, presence: true, length: { maximum: 150 }
   validates :position, presence: true, numericality: { greater_than_or_equal_to: 0 }
