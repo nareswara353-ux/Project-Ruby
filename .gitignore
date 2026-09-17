@@ -14,3 +14,8 @@
 !.env.example
 .DS_Store
 byebug_history
+/vendor/bundle
+/.bundle
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

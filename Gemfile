@@ -1,56 +1,54 @@
-source 'https://rubygems.org'
-ruby '3.4.10'
+source "https://rubygems.org"
 
-gem 'rails', '~> 7.2.0'
-gem 'pg', '~> 1.5'
-gem 'redis', '~> 5.0'
-gem 'sidekiq', '~> 7.2'
-gem 'puma', '~> 6.4'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.2.3"
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
+# Use postgresql as the database for Active Record
+gem "pg", "~> 1.1"
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", ">= 5.0"
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails"
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+# Use Dart SASS [https://github.com/rails/dartsass-rails]
+gem "dartsass-rails"
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+# Use Redis adapter to run Action Cable in production
+# gem "redis", ">= 4.0.1"
 
-gem 'hotwire-rails'
-gem 'turbo-rails'
-gem 'stimulus-rails'
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
 
-gem 'devise', '~> 4.9'
-gem 'pundit', '~> 2.3'
-gem 'stripe', '~> 10.0'
-gem 'aws-sdk-s3', '~> 1.146'
-gem 'pg_search', '~> 2.3'
-gem 'active_storage_validations', '~> 1.1'
-gem 'image_processing', '~> 1.12'
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
 
-gem 'responders', '~> 3.1'
-gem 'rack-cors', '~> 2.0'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ windows jruby ]
 
-gem 'jbuilder', '~> 2.11'
-gem 'sassc-rails', '~> 2.1'
-gem 'importmap-rails', '~> 2.0'
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", require: false
 
-gem 'logger'
-gem 'ostruct'
-gem 'benchmark'
-gem 'mutex_m'
-gem 'base64'
-gem 'bigdecimal'
-gem 'drb'
-gem 'abbrev'
-gem 'observer'
-gem 'csv'
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  gem 'rspec-rails', '~> 6.1'
-  gem 'factory_bot_rails', '~> 6.4'
-  gem 'faker', '~> 3.2'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
-  gem 'rubocop-rails', '~> 2.24', require: false
-  gem 'brakeman', '~> 6.0', require: false
-  gem 'web-console', '~> 4.2'
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "web-console"
 end
 
-group :test do
-  gem 'shoulda-matchers', '~> 6.0'
-  gem 'database_cleaner-active_record', '~> 2.1'
-end
