@@ -1,0 +1,29 @@
+<% content_for :title, "Hasil Pencarian" %>
+
+<h1>Hasil Pencarian: "<%= @query %>"</h1>
+
+<section class="courses">
+  <h2>Courses (<%= @courses&.count || 0 %>)</h2>
+  <% if @courses.present? %>
+    <div class="course-grid">
+      <% @courses.each do |course| %>
+        <%= render "courses/course_card", course: course %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Tidak ada course yang cocok.</p>
+  <% end %>
+</section>
+
+<section class="users">
+  <h2>Users (<%= @users&.count || 0 %>)</h2>
+  <% if @users.present? %>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to user.name, user_path(user) %> (<%= user.role.humanize %>)</li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Tidak ada user yang cocok.</p>
+  <% end %>
+</section>
