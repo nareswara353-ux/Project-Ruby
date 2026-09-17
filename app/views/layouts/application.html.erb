@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Rails Scaffold 65671" %></title>
+    <title><%= content_for(:title) || "LMS Enterprise" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <%= link_to "LMS", root_path %>
+      </div>
+      <div class="navbar-menu">
+        <% if user_signed_in? %>
+          <%= link_to "Dashboard", dashboard_path %>
+          <%= link_to "Courses", courses_path %>
+          <%= link_to "Notifications (#{current_user.notifications.unread.count})", notifications_path %>
+          <% if current_user.instructor? || current_user.admin? %>
+            <%= link_to "Instructor", instructor_dashboard_path %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to "Admin", admin_dashboard_path %>
+          <% end %>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-link" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+      </div>
+    </nav>
+
+    <div class="flash-messages">
+      <% flash.each do |type, message| %>
+        <div class="flash flash-<%= type %>"><%= message %></div>
+      <% end %>
+    </div>
+
+    <main class="container">
+      <%= yield %>
+    </main>
   </body>
 </html>
