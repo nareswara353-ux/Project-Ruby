@@ -16,7 +16,7 @@ Bundler.require(*Rails.groups)
 
 module ProjectRuby
   class Application < Rails::Application
-    config.load_defaults 7.2
+    config.load_defaults 8.1
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
     config.autoload_lib(ignore: %w[assets tasks])
