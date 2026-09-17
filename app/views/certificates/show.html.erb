@@ -1,0 +1,13 @@
+<% content_for :title, "Sertifikat" %>
+
+<article class="certificate">
+  <header>
+    <h1>Sertifikat Kelulusan</h1>
+  </header>
+  <section>
+    <p>Diberikan kepada <strong><%= @certificate.user.name %></strong></p>
+    <p>atas keberhasilan menyelesaikan course <strong><%= @certificate.course.title %></strong></p>
+    <p>Diterbitkan pada <%= @certificate.issued_at.strftime("%d %B %Y") %></p>
+    <p class="code">Kode Verifikasi: <code><%= @certificate.code %></code></p>
+  </section>
+</article>
