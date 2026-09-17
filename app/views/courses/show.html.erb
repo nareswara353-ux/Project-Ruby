@@ -1,0 +1,48 @@
+<% content_for :title, @course.title %>
+
+<article class="course-detail">
+  <header>
+    <h1><%= @course.title %></h1>
+    <span class="badge badge-<%= @course.level %>"><%= @course.level.humanize %></span>
+    <p class="instructor">Instruktur: <%= link_to @course.instructor.name, user_path(@course.instructor) %></p>
+    <p class="price">
+      <%= @course.price.positive? ? number_to_currency(@course.price, unit: "Rp", precision: 0) : "Gratis" %>
+    </p>
+  </header>
+
+  <section class="description">
+    <h2>Deskripsi</h2>
+    <p><%= simple_format(@course.description) %></p>
+  </section>
+
+  <section class="modules">
+    <h2>Kurikulum</h2>
+    <% @modules.each do |modul| %>
+      <div class="module">
+        <h3><%= modul.title %></h3>
+        <ul>
+          <% modul.lessons.each do |lesson| %>
+            <li>
+              <%= link_to lesson.title, lesson_path(lesson) %>
+              <span class="duration"><%= lesson.duration %> menit</span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </section>
+
+  <footer>
+    <% if user_signed_in? %>
+      <% if @enrollment %>
+        <p class="enrolled">Anda sudah terdaftar (Progress: <%= @enrollment.progress %>%)</p>
+      <% elsif @course.price.positive? %>
+        <%= button_to "Beli Sekarang", payments_path(course_id: @course.id), method: :post, class: "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Daftar Gratis", course_enrollments_path(@course), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= link_to "Sign in untuk mendaftar", new_user_session_path, class: "btn btn-primary" %>
+    <% end %>
+  </footer>
+</article>
