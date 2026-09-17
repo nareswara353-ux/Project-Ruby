@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
-  enum role: { admin: 0, instructor: 1, student: 2 }
+  enum :role, { admin: 0, instructor: 1, student: 2 }
 
   has_many :courses, foreign_key: :instructor_id, dependent: :destroy
   has_many :enrollments, dependent: :destroy

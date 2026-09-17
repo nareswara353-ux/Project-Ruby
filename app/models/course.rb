@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
-  enum status: { draft: 0, published: 1, archived: 2 }
-  enum level: { beginner: 0, intermediate: 1, advanced: 2 }
+  enum :status, { draft: 0, published: 1, archived: 2 }
+  enum :level, { beginner: 0, intermediate: 1, advanced: 2 }
 
   belongs_to :instructor, class_name: "User"
   has_many :modules, class_name: "CourseModule", dependent: :destroy

@@ -1,5 +1,5 @@
 class CourseModule < ApplicationRecord
-  enum status: { draft: 0, published: 1 }
+  enum :status, { draft: 0, published: 1 }
 
   belongs_to :course
   has_many :lessons, dependent: :destroy

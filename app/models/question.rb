@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
-  enum question_type: { multiple_choice: 0, true_false: 1, essay: 2 }
-  enum difficulty: { easy: 0, medium: 1, hard: 2 }
+  enum :question_type, { multiple_choice: 0, true_false: 1, essay: 2 }
+  enum :difficulty, { easy: 0, medium: 1, hard: 2 }
 
   has_many :quiz_questions, dependent: :destroy
   has_many :quizzes, through: :quiz_questions

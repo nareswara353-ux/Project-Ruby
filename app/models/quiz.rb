@@ -1,5 +1,5 @@
 class Quiz < ApplicationRecord
-  enum status: { draft: 0, published: 1 }
+  enum :status, { draft: 0, published: 1 }
 
   belongs_to :course
   belongs_to :lesson, optional: true

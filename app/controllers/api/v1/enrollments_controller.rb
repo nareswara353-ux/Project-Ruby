@@ -9,7 +9,7 @@ module Api
         if result.success?
           render json: { id: result.enrollment.id, status: result.enrollment.status }, status: :created
         else
-          render json: { error: result.error }, status: :unprocessable_entity
+          render json: { error: result.error }, status: :unprocessable_content
         end
       end
 
@@ -25,7 +25,7 @@ module Api
       attr_reader :current_api_user
 
       def authenticate_api_user!
-        token = request.headers['Authorization']&.split(' ')&.last
+        token = request.headers['Authorization']&.split&.last
         @current_api_user = User.find_by(api_token: token) if token.present?
         render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_api_user
       end

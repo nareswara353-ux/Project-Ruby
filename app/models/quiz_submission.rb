@@ -1,5 +1,5 @@
 class QuizSubmission < ApplicationRecord
-  enum status: { in_progress: 0, completed: 1, graded: 2 }
+  enum :status, { in_progress: 0, completed: 1, graded: 2 }
 
   belongs_to :user
   belongs_to :quiz
@@ -18,6 +18,7 @@ class QuizSubmission < ApplicationRecord
 
   def calculate_score
     return 0 if answers.blank?
+
     total = 0
     quiz.quiz_questions.each do |qq|
       user_answer = answers[qq.question_id.to_s]

@@ -45,6 +45,7 @@ class CoursePolicy < ApplicationPolicy
     def resolve
       return scope.all if user&.admin?
       return scope.where(instructor: user).or(scope.published) if user&.instructor?
+
       scope.published
     end
   end

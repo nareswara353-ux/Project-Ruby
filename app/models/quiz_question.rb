@@ -8,13 +8,9 @@ class QuizQuestion < ApplicationRecord
 
   before_validation :set_default_position, on: :create
 
-  def correct_answer
-    question.correct_answer
-  end
+  delegate :correct_answer, to: :question
 
-  def correct?(answer)
-    question.correct?(answer)
-  end
+  delegate :correct?, to: :question
 
   private
 

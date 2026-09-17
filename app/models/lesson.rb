@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
-  enum status: { draft: 0, published: 1 }
-  enum lesson_type: { video: 0, text: 1, quiz: 2 }
+  enum :status, { draft: 0, published: 1 }
+  enum :lesson_type, { video: 0, text: 1, quiz: 2 }
 
   belongs_to :course_module
   has_one :course, through: :course_module

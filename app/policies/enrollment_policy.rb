@@ -33,6 +33,7 @@ class EnrollmentPolicy < ApplicationPolicy
     def resolve
       return scope.all if user&.admin?
       return scope.joins(:course).where(courses: { instructor_id: user.id }) if user&.instructor?
+
       scope.where(user: user)
     end
   end

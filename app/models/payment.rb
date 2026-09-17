@@ -1,5 +1,5 @@
 class Payment < ApplicationRecord
-  enum status: { pending: 0, successful: 1, failed: 2, refunded: 3 }
+  enum :status, { pending: 0, successful: 1, failed: 2, refunded: 3 }
 
   belongs_to :user
   belongs_to :course

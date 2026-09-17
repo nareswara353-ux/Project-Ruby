@@ -1,5 +1,5 @@
 class Enrollment < ApplicationRecord
-  enum status: { active: 0, completed: 1, dropped: 2 }
+  enum :status, { active: 0, completed: 1, dropped: 2 }
 
   belongs_to :user
   belongs_to :course
@@ -19,6 +19,7 @@ class Enrollment < ApplicationRecord
   def update_progress!
     total = course.total_lessons_count
     return if total.zero?
+
     completed = lesson_completions_count
     update(progress: (completed.to_f / total * 100).to_i)
   end
