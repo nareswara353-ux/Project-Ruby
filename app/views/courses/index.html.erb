@@ -1,0 +1,13 @@
+<% content_for :title, "Courses" %>
+
+<h1>Semua Courses</h1>
+
+<% if policy(Course).create? %>
+  <%= link_to "Buat Course Baru", new_course_path, class: "btn btn-primary" %>
+<% end %>
+
+<div class="course-grid">
+  <% @courses.each do |course| %>
+    <%= render "course_card", course: course %>
+  <% end %>
+</div>
