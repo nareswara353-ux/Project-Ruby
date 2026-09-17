@@ -1,0 +1,36 @@
+<% content_for :title, @lesson.title %>
+
+<article class="lesson-detail">
+  <header>
+    <p class="breadcrumb">
+      <%= link_to @course.title, course_path(@course) %> /
+      <%= link_to @lesson.course_module.title, course_module_path(@lesson.course_module) %>
+    </p>
+    <h1><%= @lesson.title %></h1>
+    <span class="duration"><%= @lesson.duration %> menit</span>
+  </header>
+
+  <% if @lesson.video_url.present? %>
+    <section class="video">
+      <a href="<%= @lesson.video_url %>" target="_blank">Tonton Video</a>
+    </section>
+  <% end %>
+
+  <section class="content">
+    <%= simple_format(@lesson.content) %>
+  </section>
+
+  <footer>
+    <% if user_signed_in? %>
+      <% if @completed %>
+        <%= button_to "Tandai Belum Selesai", incomplete_lesson_path(@lesson), method: :delete, class: "btn" %>
+      <% else %>
+        <%= button_to "Tandai Selesai", complete_lesson_path(@lesson), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+    <% if @next_lesson %>
+      <%= link_to "Lesson Berikutnya →", lesson_path(@next_lesson), class: "btn" %>
+    <% end %>
+  </footer>
+</article>
