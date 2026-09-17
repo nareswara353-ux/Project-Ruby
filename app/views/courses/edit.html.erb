@@ -1,0 +1,48 @@
+<% content_for :title, "Edit #{@course.title}" %>
+
+<h1>Edit Course</h1>
+
+<%= form_with model: @course, local: true do |f| %>
+  <% if @course.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price, min: 0, step: 1000 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.select :level, Course.levels.keys.map { |l| [l.humanize, l] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.select :status, Course.statuses.keys.map { |s| [s.humanize, s] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration, "Durasi (menit)" %>
+    <%= f.number_field :duration, min: 0 %>
+  </div>
+
+  <%= f.submit "Update", class: "btn btn-primary" %>
+  <%= link_to "Batal", course_path(@course), class: "btn" %>
+<% end %>
