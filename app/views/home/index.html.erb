@@ -1,0 +1,31 @@
+<% content_for :title, "LMS Enterprise" %>
+
+<section class="hero">
+  <h1>Belajar Tanpa Batas</h1>
+  <p>Platform LMS enterprise dengan kursus berkualitas dari instruktur terbaik.</p>
+  <%= link_to "Jelajahi Courses", courses_path, class: "btn btn-primary" %>
+</section>
+
+<section class="stats">
+  <div class="stat">
+    <strong><%= @total_courses %></strong>
+    <span>Courses</span>
+  </div>
+  <div class="stat">
+    <strong><%= @total_students %></strong>
+    <span>Students</span>
+  </div>
+  <div class="stat">
+    <strong><%= @total_instructors %></strong>
+    <span>Instructors</span>
+  </div>
+</section>
+
+<section class="featured-courses">
+  <h2>Course Unggulan</h2>
+  <div class="course-grid">
+    <% @featured_courses.each do |course| %>
+      <%= render "courses/course_card", course: course %>
+    <% end %>
+  </div>
+</section>
