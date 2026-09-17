@@ -1,0 +1,15 @@
+<% content_for :title, "Verifikasi Sertifikat" %>
+
+<div class="certificate-verify">
+  <h1>Verifikasi Sertifikat</h1>
+  <% if @certificate&.valid? %>
+    <div class="verified">
+      <p>Sertifikat VALID</p>
+      <p>Nama: <strong><%= @certificate.user.name %></strong></p>
+      <p>Course: <strong><%= @certificate.course.title %></strong></p>
+      <p>Diterbitkan: <%= @certificate.issued_at.strftime("%d %b %Y") %></p>
+    </div>
+  <% else %>
+    <p class="invalid">Sertifikat tidak valid atau sudah kadaluarsa.</p>
+  <% end %>
+</div>
