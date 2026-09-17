@@ -1,0 +1,47 @@
+<% content_for :title, "Instructor Dashboard" %>
+
+<h1>Instructor Dashboard</h1>
+
+<section class="stats">
+  <div class="stat">
+    <strong><%= @courses.count %></strong>
+    <span>Courses</span>
+  </div>
+  <div class="stat">
+    <strong><%= @total_students %></strong>
+    <span>Students</span>
+  </div>
+  <div class="stat">
+    <strong><%= number_to_currency(@total_revenue, unit: "Rp", precision: 0) %></strong>
+    <span>Revenue</span>
+  </div>
+</section>
+
+<section class="courses">
+  <h2>Course Saya</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Students</th>
+        <th>Modules</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.title, course_path(course) %></td>
+          <td><%= course.enrollment_count %></td>
+          <td><%= course.total_modules_count %></td>
+          <td><%= course.status.humanize %></td>
+          <td>
+            <%= link_to "Analytics", analytics_course_path(course) %>
+            <%= link_to "Students", students_course_path(course) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
