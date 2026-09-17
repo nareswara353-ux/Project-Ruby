@@ -48,7 +48,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "brakeman", "~> 6.0", require: false
+  gem "brakeman", "~> 8.0", require: false
   gem "rubocop-rails", "~> 2.24", require: false
   gem "web-console"
 end
