@@ -62,6 +62,10 @@ Rails.application.routes.draw do
         resources :quizzes, only: [:index]
       end
       resources :lessons, only: [:show]
+      resources :courses, only: [] do
+        resources :discussion_topics, only: [:index, :create]
+      end
+      resources :discussion_topics, only: [:show]
       resources :quizzes, only: [:show]
       resources :enrollments, only: [:create, :destroy]
       resources :quiz_submissions, only: [:create, :show]
