@@ -23,6 +23,7 @@ gem "pg_search", "~> 2.3"
 gem "pundit", "~> 2.5"
 gem "stripe", "~> 10.0"
 
+gem "kaminari", "~> 1.2"
 gem "rack-cors", "~> 2.0"
 gem "responders", "~> 3.1"
 
@@ -55,6 +56,7 @@ end
 
 group :test do
   gem "database_cleaner-active_record", "~> 2.1"
+  gem "pundit-matchers", "~> 4.0"
   gem "shoulda-matchers", "~> 6.0"
 end
 

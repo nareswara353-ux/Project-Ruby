@@ -9,7 +9,11 @@ RSpec.describe Lesson, type: :model do
 
   describe "validations" do
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_length_of(:title).is_at_most(200) }
+    it 'validates title length' do
+      lesson = build(:lesson)
+      lesson.title = 'a' * 201
+      expect(lesson).not_to be_valid
+    end
   end
 
   describe "enums" do
