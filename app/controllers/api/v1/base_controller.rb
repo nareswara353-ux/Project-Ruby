@@ -8,6 +8,14 @@ module Api
 
       private
 
+      def pundit_user
+        current_api_user
+      end
+
+      def current_api_user
+        @current_api_user
+      end
+
       def handle_forbidden
         render json: { error: "Forbidden" }, status: :forbidden
       end

@@ -1,6 +1,7 @@
 module Api
   module V1
     class QuizzesController < BaseController
+      include ApiAuthenticatable
       before_action :set_course, only: [:index]
       before_action :set_quiz, only: [:show]
 
