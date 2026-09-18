@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       end
       resources :discussion_posts, only: [:show]
       resources :users, only: [:show]
+      get "search", to: "search#index"
       resources :quizzes, only: [:show]
       resources :enrollments, only: [:create, :destroy]
       resources :quiz_submissions, only: [:create, :show]
