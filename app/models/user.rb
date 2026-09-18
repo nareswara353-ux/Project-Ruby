@@ -15,4 +15,12 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   validates :bio, length: { maximum: 500 }
   validates :role, presence: true
+
+  before_create :generate_api_token
+
+  private
+
+  def generate_api_token
+    self.api_token ||= SecureRandom.hex(24)
+  end
 end
