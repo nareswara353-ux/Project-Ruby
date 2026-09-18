@@ -1,6 +1,7 @@
 module Api
   module V1
     class DiscussionTopicsController < BaseController
+      include ApiAuthenticatable
       before_action :set_course, only: [:index, :create]
       before_action :set_topic, only: [:show]
 
@@ -25,8 +26,6 @@ module Api
       end
 
       private
-
-      attr_reader :current_api_user
 
       def set_course
         @course = Course.find_by!(slug: params[:course_id])
