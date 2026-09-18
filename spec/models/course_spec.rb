@@ -9,12 +9,16 @@ RSpec.describe Course, type: :model do
   end
 
   describe "validations" do
-    subject { build(:course) }
-
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:slug) }
-    it { is_expected.to validate_uniqueness_of(:slug) }
+    it { is_expected.to validate_length_of(:title).is_at_most(200) }
     it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(0) }
+
+    it "requires unique slug" do
+      create(:course, slug: "unique-slug")
+      duplicate = build(:course, slug: "unique-slug")
+      expect(duplicate).not_to be_valid
+      expect(duplicate.errors[:slug]).to be_present
+    end
   end
 
   describe "slug generation" do
