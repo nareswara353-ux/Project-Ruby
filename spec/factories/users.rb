@@ -6,6 +6,7 @@ FactoryBot.define do
     password_confirmation { "password123" }
     role { :student }
     confirmed_at { Time.current }
+    api_token { SecureRandom.hex(16) }
 
     trait :admin do
       role { :admin }
