@@ -1,5 +1,5 @@
 class HealthCheckController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, raise: false
 
   def show
     checks = {
@@ -7,7 +7,7 @@ class HealthCheckController < ApplicationController
       redis: redis_ok?,
       timestamp: Time.current.iso8601
     }
-    status = checks.values.all? { |v| v == true || v.is_a?(String) } ? :ok : :service_unavailable
+    status = checks[:database] ? :ok : :service_unavailable
     render json: checks, status: status
   end
 
