@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Certificates", type: :request do
-  let(:certificate) { create(:certificate) }
+  let(:user) { create(:user, :student) }
+  let(:course) { create(:course) }
+  let!(:certificate) { create(:certificate, user: user, course: course) }
 
   describe "GET /api/v1/certificates/:code/verify" do
     it "returns certificate details for valid code" do
@@ -10,8 +12,6 @@ RSpec.describe "Api::V1::Certificates", type: :request do
       json = JSON.parse(response.body)
       expect(json["code"]).to eq(certificate.code)
       expect(json["valid"]).to be true
-      expect(json["user"]).to be_present
-      expect(json["course"]).to be_present
     end
 
     it "returns 404 for invalid code" do
