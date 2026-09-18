@@ -17,9 +17,8 @@ module ErrorHandling
   end
 
   def respond_error(message, status)
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path, alert: message) }
-      format.json { render json: { error: message }, status: status }
+    if respond_to?(:render)
+      render json: { error: message }, status: status
     end
   end
 end
