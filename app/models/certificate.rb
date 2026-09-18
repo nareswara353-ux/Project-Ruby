@@ -10,7 +10,7 @@ class Certificate < ApplicationRecord
 
   after_create :schedule_pdf_generation
 
-  def valid?
+  def active?
     expires_at.nil? || expires_at > Time.current
   end
 
