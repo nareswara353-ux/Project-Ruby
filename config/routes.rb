@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :courses, only: [:index, :show]
+      resources :lessons, only: [:show]
       resources :enrollments, only: [:create, :destroy]
       resources :quiz_submissions, only: [:create, :show]
       post "payments/webhook", to: "payments#webhook"
