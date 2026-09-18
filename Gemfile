@@ -17,7 +17,7 @@ gem "turbo-rails"
 
 gem "active_storage_validations", "~> 1.1"
 gem "aws-sdk-s3", "~> 1.146"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "image_processing", "~> 1.12"
 gem "pg_search", "~> 2.3"
 gem "pundit", "~> 2.5"
