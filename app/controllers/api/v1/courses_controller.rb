@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CoursesController < ActionController::API
+    class CoursesController < BaseController
       before_action :set_course, only: [:show]
 
       def index
@@ -18,7 +18,7 @@ module Api
       private
 
       def set_course
-        @course = Course.find_by!(slug: params.expect(:id))
+        @course = Course.find_by!(slug: params[:id])
       end
 
       def course_payload(course, detailed: false)
