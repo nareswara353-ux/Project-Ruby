@@ -1,6 +1,7 @@
 module Api
   module V1
     class DiscussionPostsController < BaseController
+      include ApiAuthenticatable
       before_action :set_topic, only: [:index, :create]
       before_action :set_post, only: [:show]
 
@@ -23,8 +24,6 @@ module Api
       end
 
       private
-
-      attr_reader :current_api_user
 
       def set_topic
         @topic = DiscussionTopic.find(params[:discussion_topic_id])
