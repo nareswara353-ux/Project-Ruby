@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show]
       get "search", to: "search#index"
       resources :notifications, only: [:index, :update]
+      get "certificates/:code/verify", to: "certificates#verify"
       resources :quizzes, only: [:show]
       resources :enrollments, only: [:create, :destroy]
       resources :quiz_submissions, only: [:create, :show]
