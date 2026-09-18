@@ -24,7 +24,7 @@ gem "pundit", "~> 2.5"
 gem "stripe", "~> 10.0"
 
 gem "kaminari", "~> 1.2"
-gem "rack-cors", "~> 2.0"
+gem "rack-cors", "~> 3.0"
 gem "responders", "~> 3.1"
 
 gem "bootsnap", require: false
