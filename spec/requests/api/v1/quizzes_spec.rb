@@ -4,6 +4,7 @@ RSpec.describe "Api::V1::Quizzes", type: :request do
   let(:user) { create(:user, :student) }
   let(:course) { create(:course, status: :published) }
   let!(:quiz) { create(:quiz, course: course, status: :published) }
+  let!(:enrollment) { create(:enrollment, user: user, course: course, status: :active) }
 
   let(:auth_headers) { { "Authorization" => "Bearer #{user.api_token}" } }
 
@@ -17,7 +18,7 @@ RSpec.describe "Api::V1::Quizzes", type: :request do
   end
 
   describe "GET /api/v1/quizzes/:id" do
-    it "returns quiz detail" do
+    it "returns quiz detail for enrolled student" do
       get "/api/v1/quizzes/#{quiz.id}", headers: auth_headers
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
