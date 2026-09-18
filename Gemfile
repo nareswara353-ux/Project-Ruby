@@ -15,7 +15,7 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 
-gem "active_storage_validations", "~> 1.1"
+gem "active_storage_validations", "~> 4.1"
 gem "aws-sdk-s3", "~> 1.146"
 gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.12"
