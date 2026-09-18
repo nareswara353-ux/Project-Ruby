@@ -1,10 +1,10 @@
 module Api
   module V1
-    class EnrollmentsController < ActionController::API
+    class EnrollmentsController < BaseController
       before_action :authenticate_api_user!
 
       def create
-        course = Course.find(params.expect(:course_id))
+        course = Course.find(params[:course_id])
         result = CourseEnrollmentService.new(user: current_api_user, course: course).call
         if result.success?
           render json: { id: result.enrollment.id, status: result.enrollment.status }, status: :created
@@ -14,7 +14,7 @@ module Api
       end
 
       def destroy
-        enrollment = current_api_user.enrollments.find(params.expect(:id))
+        enrollment = current_api_user.enrollments.find(params[:id])
         authorize enrollment, :destroy?
         enrollment.destroy
         head :no_content
@@ -25,9 +25,9 @@ module Api
       attr_reader :current_api_user
 
       def authenticate_api_user!
-        token = request.headers['Authorization']&.split&.last
+        token = request.headers["Authorization"]&.split(" ")&.last
         @current_api_user = User.find_by(api_token: token) if token.present?
-        render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_api_user
+        render json: { error: "Unauthorized" }, status: :unauthorized unless @current_api_user
       end
     end
   end
